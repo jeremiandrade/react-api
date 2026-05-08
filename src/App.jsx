@@ -35,7 +35,6 @@ function App() {
   const [actresses, setActresses] = useState([])
 
   useEffect(() => {
-    console.log('https://lanciweb.github.io/demo/api/actresses/');
 
     fetch(actresses_url)
       .then(response => response.json())
@@ -46,29 +45,43 @@ function App() {
       })
   }, [])
 
-  // const actors = 'https://lanciweb.github.io/demo/api/actors/'
-  // const [actors, setActors] = useState([])
 
+  // chiamata Ajax actors
+  const actors_url = 'https://lanciweb.github.io/demo/api/actors/'
+  const [actors, setActors] = useState([])
+
+  useEffect(() => {
+    fetch(actors_url)
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        setActors(data)
+      })
+  }, [])
 
 
 
   return (
     <>
-      <h2>List Actresses</h2>
-
-      <ol>
-        {
-          actresses.map(item => (
+      {/* list item actresses */}
+      <div className="list-1_actresses">
+        <h2>List Actresses</h2>
+        <ol>
+          {actresses.map(item => (
             <li key={item.id}>{item.name}</li>
-          ))
-        }
-      </ol>
+          ))}
+        </ol>
+      </div>
 
-      <h2>List Actors</h2>
-
-      <ol>
-        <li>actors</li>
-      </ol>
+      {/* list item actors */}
+      <div className="list_2_actors">
+        <h2>List Actors</h2>
+        <ol>
+          {actors.map(actor => (
+            <li key={actor.id}>{actor.name}</li>
+          ))}
+        </ol>
+      </div>
 
 
 
